@@ -103,7 +103,6 @@ body {
 .profile,
 .friends,
 .messages,
-.notifications,
 .settings {
   border: 1px solid rgb(126, 126, 126);
   width: 100%;
@@ -116,6 +115,261 @@ body {
   background-size: cover;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.192);
 }
+.panel-header {
+  border-bottom: 1px solid white;
+  padding: 4px 0;
+  font-size: 26px;
+  margin-bottom: 10px;
+  max-width: 150px;
+  width: 100%;
+  grid-column: 1 / 2;
+}
+.profile {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  gap: 15px;
+  position: relative;
+}
+.avatar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  position: relative;
+}
+.select-avatar {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.select-avatar img {
+  width: 65%;
+  max-height: 200px;
+  height: 100%;
+  border: 1px solid white;
+  transition: 0.3s;
+  border: 1px solid white;
+}
+.select-avatar button {
+  width: 75%;
+  height: 85%;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 50px;
+}
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.account-info p {
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account-info button {
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+}
+.password-change {
+  transition: 0.3s;
+  margin: 10px 0;
+}
+.password-change input {
+  width: 100%;
+  height: 35px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.account-id {
+  display: flex;
+  gap: 25px;
+}
+.qr button {
+  height: 100%;
+  width: 360px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+}
+.analog {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.analog p {
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.analog button {
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+}
+.account-info button:hover {
+  background-color: rgba(255, 255, 255, 0.137);
+}
+.select-avatar button:hover {
+  background-color: rgba(255, 255, 255, 0.137);
+}
+.collection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.collection > img {
+  width: 25%;
+  max-height: 200px;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.collection > img:hover {
+  transform: scale(1.06);
+}
+.friends {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  grid-template-rows: auto 1fr;
+}
+.addfriendtext {
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+}
+.messages {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  grid-template-rows: auto 1fr;
+}
+.friend-messages {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.chat {
+  grid-column: 2 / -1;
+  grid-row: 2 / 3;
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.settings > div {
+  border-bottom: 1px solid white;
+  padding: 8px 0;
+}
+.settings > button {
+  margin-top: auto;
+  max-width: 190px;
+  height: 40px;
+  width: 100%;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+}
+.settings > button:hover {
+  background-color: rgba(255, 255, 255, 0.205);
+}
+.theme-mode > div {
+  text-transform: capitalize;
+}
+.options {
+  display: flex;
+  gap: 15px;
+  padding: 5px 0;
+}
+.options label {
+  max-width: 120px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: 0.3s;
+  text-transform: capitalize;
+  background-color: rgba(255, 255, 255, 0.048);
+}
+.options label:hover {
+  border: 1px solid transparent;
+  background-color: rgba(255, 255, 255, 0.205);
+}
+.options input {
+  display: none;
+}
+.labelchecked {
+  border: 1px solid white !important;
+  background-color: rgba(255, 255, 255, 0.205);
+}
+.language select {
+  margin: 5px 0;
+  max-width: 120px;
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.048);
+  color: white;
+  transition: 0.25s;
+}
+.language select:hover {
+  background-color: rgba(255, 255, 255, 0.205);
+}
+.language select:focus {
+  background-color: rgba(255, 255, 255, 0.205);
+}
+.language select option {
+  background-color: rgba(7, 7, 7, 0.973) !important;
+  color: white;
+}
+
 /* * User auth */
 .register {
   display: grid;

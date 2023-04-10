@@ -4,7 +4,6 @@ import Sidebar from "./Sidebar";
 import Friends from "./components/Friends";
 import Profile from "./components/Profile";
 import Messages from "./components/Messages";
-import Notifications from "./components/Notifications";
 import Settings from "./components/Settings";
 
 import Register from "./auth/Register";
@@ -57,15 +56,6 @@ function App() {
               <>
                 <Sidebar setsessionID={setsessionID} />
                 <Messages />
-              </>
-            }
-          />
-          <Route
-            path="/notifications"
-            element={
-              <>
-                <Sidebar setsessionID={setsessionID} />
-                <Notifications />
               </>
             }
           />

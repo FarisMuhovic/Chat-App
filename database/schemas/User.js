@@ -14,6 +14,15 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  privateID: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  friends: {
+    type: Array,
+    default: [],
+  },
 });
 
 const User = mongoose.model("User", UserSchema);

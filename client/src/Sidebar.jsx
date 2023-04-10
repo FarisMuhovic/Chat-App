@@ -10,12 +10,11 @@ const Sidebar = props => {
     e.currentTarget.getAttribute("data-linkname") === "logout" && logout();
   }
   const links = [
-    {id: 1, name: "profile", icon: "fa-user"},
-    {id: 2, name: "friends", icon: "fa-user-group"},
-    {id: 3, name: "messages", icon: "fa-envelope"},
-    {id: 4, name: "notifications", icon: "fa-bell"},
-    {id: 5, name: "settings", icon: "fa-gear"},
-    {id: 6, name: "logout", icon: "fa-sign-out"},
+    {id: 1, name: "profile", icon: "fa-user", path: "/profile"},
+    {id: 2, name: "friends", icon: "fa-user-group", path: "/friends"},
+    {id: 3, name: "messages", icon: "fa-envelope", path: "/messages"},
+    {id: 4, name: "settings", icon: "fa-gear", path: "/settings"},
+    {id: 5, name: "logout", icon: "fa-sign-out", path: "/login"},
   ];
 
   function logout() {
@@ -40,9 +39,9 @@ const Sidebar = props => {
   const linkElements = links.map(link => {
     return (
       <Link
-        to={`/${
-          link.name.toLowerCase() !== "logout"
-            ? link.name.toLowerCase()
+        to={`${
+          link.path.toLowerCase() !== "logout"
+            ? link.path.toLowerCase()
             : "login"
         }`}
         onClick={linkFunctionality}

@@ -60,3 +60,5 @@ async function checkSessions(req, res, next) {
 module.exports = checkSessions;
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+const friendsRoutes = require("./routes/friends");
+app.use("/friends", checkSessions, friendsRoutes);
