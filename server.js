@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const http = require("http");
 
 // * ENVIRONMENT VARIABLES
 const ENV = "development";
@@ -11,9 +12,19 @@ const PORT = 6001;
 
 // * EXPRESS SERVER
 const app = express();
-app.listen(PORT, `${DOMAIN}`, () => {
+const server = http.createServer(app); // create a server using the express app
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+  },
+});
+
+server.listen(PORT, DOMAIN, () => {
+  // listen to incoming connections
   console.log(`Server listening on port ${PORT}`);
 });
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -41,7 +52,7 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
-      maxAge: 1000 * 60 * 60, // 1 hour
+      maxAge: 1000 * 60 * 60 * 60, // 1 hour
     },
   })
 );
@@ -57,8 +68,61 @@ async function checkSessions(req, res, next) {
     res.status(401).json({message: "Unauthorized"});
   }
 }
+
 module.exports = checkSessions;
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 const friendsRoutes = require("./routes/friends");
 app.use("/friends", checkSessions, friendsRoutes);
+
+// Socket.IO events
+io.on("connection", socket => {
+  console.log("User connected:", socket.id);
+  socket.on("send-message", async (message, room) => {
+    const {sentBy, receiver} = message;
+    const msg = message.message;
+    const messageSender = await user.findOne({privateID: sentBy});
+    const senderUsername = messageSender.username;
+    const messageReceiver = await user.findOne({privateID: receiver});
+    const receiverUsername = messageReceiver.username;
+
+    const roomtoUpdate = messageSender.friends.find(
+      friend => friend.roomID === room
+    );
+    const roomtoUpdate2 = messageReceiver.friends.find(
+      friend => friend.roomID === room
+    );
+    roomtoUpdate.messages.push({
+      message: msg,
+      sentBy: senderUsername,
+      to: receiverUsername,
+    });
+    roomtoUpdate2.messages.push({
+      message: msg,
+      sentBy: senderUsername,
+      to: receiverUsername,
+    });
+    await messageSender.save();
+    await messageReceiver.save();
+
+    const finalMessage = {
+      message: msg,
+      sentBy: senderUsername,
+      receiver: receiverUsername,
+    };
+    io.to(room).emit("receive-message", finalMessage);
+  });
+  socket.on("join-room", async (room, client, friend) => {
+    socket.join(room);
+    const clientUser = await user.findOne({privateID: client});
+
+    const getMessages = clientUser.friends.find(
+      friend => friend.roomID === room
+    ).messages;
+    
+    socket.emit("messages", getMessages);
+  });
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});

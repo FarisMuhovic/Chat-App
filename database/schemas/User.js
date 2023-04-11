@@ -19,10 +19,27 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  friends: {
-    type: Array,
-    default: [],
-  },
+  friends: [
+    {
+      roomID: {
+        type: String,
+        required: true,
+        unique: true,
+      },
+      friendID: String,
+      messages: [
+        {
+          message: String,
+          sentBy: String,
+          to: String,
+          createdAt: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);

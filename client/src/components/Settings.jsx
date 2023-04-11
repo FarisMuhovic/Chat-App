@@ -53,6 +53,7 @@ const Settings = () => {
             <FormControlLabel
               control={
                 <Switch
+                  disabled
                   checked={themeMode === "dark" ? true : false}
                   onClick={() => {
                     if (themeMode === "dark") {
@@ -67,6 +68,7 @@ const Settings = () => {
               }
               label={`${themeMode} mode`}
             />
+            <span>Dark Mode</span>
           </FormGroup>
         </div>
         <div className="messageDissapears">
@@ -122,6 +124,7 @@ const Settings = () => {
         <div className="language">
           <h3>Language</h3>
           <select
+            disabled
             name="language"
             id="language"
             onChange={settingsData}
@@ -137,6 +140,7 @@ const Settings = () => {
           <label>
             <span>off</span>
             <Switch
+              disabled
               checked={notifi}
               onClick={() => {
                 if (notifi) {

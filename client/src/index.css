@@ -124,14 +124,22 @@ body {
   width: 100%;
   grid-column: 1 / 2;
 }
-.profile {
+/* * OLD-CSS-Profile */
+/* .profile {
   display: grid;
   grid-template-columns: 0.4fr 1fr;
   grid-template-rows: auto 1fr 1fr;
   gap: 15px;
   position: relative;
+} */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-.avatar {
+/* .avatar {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -163,26 +171,18 @@ body {
   text-transform: capitalize;
   transition: 0.3s;
   font-size: 50px;
-}
+} */
 .account-info {
   display: flex;
+  max-width: 350px;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
 }
 .account-info p {
-  width: 100%;
-  height: 40px;
-  border: 1px solid white;
-  background-color: rgb(8, 8, 8);
-  color: white;
-  text-transform: capitalize;
-  transition: 0.3s;
-  font-size: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-}
-.account-info button {
   width: 100%;
   height: 40px;
   border: 1px solid white;
@@ -191,14 +191,48 @@ body {
   text-transform: capitalize;
   transition: 0.3s;
   font-size: 20px;
+  padding: 10px 20px;
+}
+.btn-password-change,
+.btn-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+.btn-delete {
+  background-color: rgb(63, 5, 5);
+  justify-content: center;
 }
 .password-change {
   transition: 0.3s;
   margin: 10px 0;
 }
-.password-change input {
+.password-change button {
   width: 100%;
   height: 35px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.password-change input {
+  width: 100%;
+  height: 40px;
   border: 1px solid white;
   background-color: rgb(8, 8, 8);
   color: white;
@@ -214,7 +248,7 @@ body {
   display: flex;
   gap: 25px;
 }
-.qr button {
+/* .qr button {
   height: 100%;
   width: 360px;
   border: 1px solid white;
@@ -223,15 +257,16 @@ body {
   text-transform: capitalize;
   transition: 0.3s;
   font-size: 20px;
-}
+} */
 .analog {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 350px;
 }
 .analog p {
   width: 100%;
-  height: 40px;
+  height: auto;
   border: 1px solid white;
   background-color: rgb(8, 8, 8);
   color: white;
@@ -241,6 +276,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 20px;
+  text-align: center;
+}
+.analog p span {
+  font-size: 18px;
+  margin-left: 10px;
+  color: rgb(121, 15, 15);
 }
 .analog button {
   width: 100%;
@@ -251,6 +293,9 @@ body {
   text-transform: capitalize;
   transition: 0.3s;
   font-size: 20px;
+}
+.analog button:hover {
+  background-color: rgba(255, 255, 255, 0.137);
 }
 .account-info button:hover {
   background-color: rgba(255, 255, 255, 0.137);
@@ -277,23 +322,188 @@ body {
   display: grid;
   grid-template-columns: 0.25fr 1fr;
   grid-template-rows: auto 1fr;
+  gap: 10px 25px;
+}
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  grid-column: 1 / 2;
+  padding: 10px 20px 10px 0;
+  overflow-y: auto;
+}
+.friends-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+.friends-list a span {
+  margin-left: auto;
+  font-size: 17px;
+}
+.friends-list a:hover {
+  background-color: rgba(255, 255, 255, 0.137);
 }
 .addfriendtext {
   grid-column: 2 / -1;
   grid-row: 1 / 2;
 }
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  width: 100%;
+}
+.add-friend input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+}
+.add-friend button {
+  align-self: center;
+  width: 100%;
+  height: 30px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+}
+.add-friend button:hover {
+  background-color: rgba(255, 255, 255, 0.137);
+}
 .messages {
   display: grid;
   grid-template-columns: 0.25fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 50px 65vh;
 }
 .friend-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  padding: 10px 20px 10px 0;
+  overflow-y: auto;
+}
+.friend-messages button {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+}
+.friend-messages button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.137);
 }
 .chat {
   grid-column: 2 / -1;
   grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
+}
+.chat h3 {
+  padding: 3px 0 5px 0;
+  border-bottom: 1px solid white;
+}
+.message-inputbox {
+  display: flex;
+  gap: 4px;
+  margin-top: auto;
+  align-items: center;
+}
+.message-inputbox input {
+  width: 85%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+}
+.message-inputbox button {
+  width: 15%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  text-transform: capitalize;
+  transition: 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+}
+.message-inputbox button:hover {
+  background-color: rgba(255, 255, 255, 0.137);
+  cursor: pointer;
+}
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+.message-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  background-color: rgb(24, 24, 24);
+  padding: 10px;
+  gap: 3px;
+}
+.message-box p {
+  font-size: 20px;
+  padding: 5px 0;
+}
+.message-box span {
+  font-size: 15px;
+  color: rgb(211, 211, 211);
 }
 .settings {
   display: flex;
@@ -320,6 +530,12 @@ body {
 }
 .theme-mode > div {
   text-transform: capitalize;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.theme-mode > div > span {
+  transform: translateX(-80px);
 }
 .options {
   display: flex;

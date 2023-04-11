@@ -36,9 +36,17 @@ router.post("/login", async (req, res) => {
   }
 });
 router.get("/login", checkSessions, async (req, res) => {
+  // find the user data and send it back
+  const user = await User.findOne({privateID: req.session.privateID});
+  console.log(user.friends);
   return res
     .status(200)
-    .json({message: "User logged in", privateID: req.session.privateID});
+    .json({
+      message: "User logged in",
+      username: user.username,
+      privateID: req.session.privateID,
+      userFriends: user.friends,
+    });
 });
 router.get("/logout", checkSessions, async (req, res) => {
   req.session.destroy();
